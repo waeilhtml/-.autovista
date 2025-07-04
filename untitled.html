@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTOVISTA - خدمات بيع وشراء السيارات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row-reverse;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+            margin-right: 0;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .hero {
+            background: url('https://i.postimg.cc/qvfdLMdL/file-00000000924c61f8a0f0d83187c5965b.png') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            width: 100%;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .services {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: #777;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .about {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4rem 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .company-name {
+            font-family: 'Arial Black', sans-serif;
+            color: var(--secondary-color);
+            font-size: 1.2em;
+            letter-spacing: 1px;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .why-us {
+            margin-top: 2rem;
+        }
+        
+        .why-us h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .why-us ul {
+            list-style-type: none;
+        }
+        
+        .why-us ul li {
+            position: relative;
+            padding-right: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .why-us ul li:before {
+            content: "✓";
+            color: var(--secondary-color);
+            position: absolute;
+            right: 0;
+            font-weight: bold;
+        }
+        
+        .about-img img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact {
+            padding: 4rem 0;
+            background-color: var(--light-color);
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .contact-info p {
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            margin-top: 2rem;
+        }
+        
+        .social-links h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary-color);
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-media {
+            margin-bottom: 1.5rem;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        .floating-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+        .whatsapp-btn,
+        .messenger-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .whatsapp-btn {
+            background-color: #25D366;
+        }
+        
+        .messenger-btn {
+            background-color: #006AFF;
+        }
+        
+        .whatsapp-btn:hover,
+        .messenger-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <a href="#" class="logo">AUTO<span>VISTA</span></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#services">خدماتنا</a></li>
+                        <li><a href="#about">من نحن</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content container">
+            <h1>خدمات بيع وشراء السيارات المضمونة</h1>
+            <p>نقدم لكم أفضل الخدمات في مجال بيع وشراء السيارات مع ضمان الجودة والموثوقية. فريقنا من الخبراء يساعدك في العثور على السيارة المثالية أو بيع سيارتك بأفضل سعر.</p>
+            <a href="#services" class="btn">استكشف خدماتنا</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدماتنا المتميزة</h2>
+                <p>نحن في AUTOVISTA نقدم باقة متكاملة من الخدمات لضمان راحة عملائنا وثقتهم:</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://i.postimg.cc/ZRFrfLnc/1751579144688.jpg" alt="بيع السيارات الجديدة">
+                    </div>
+                    <div class="service-content">
+                        <h3>بيع السيارات الجديدة</h3>
+                        <p>نوفر أحدث الموديلات من مختلف العلامات التجارية المحلية والعالمية، مع ضمانات رسمية وخدمة ما بعد البيع.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://i.postimg.cc/J4tkJ8NK/1751579359694.jpg" alt="بيع السيارات المستعملة">
+                    </div>
+                    <div class="service-content">
+                        <h3>بيع السيارات المستعملة المضمونة</h3>
+                        <p>سيارات مستعملة بحالة ممتازة، تم فحصها بدقة، مع إمكانية التقسيط وخيارات متعددة حسب ميزانيتك.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="تبديل السيارات">
+                    </div>
+                    <div class="service-content">
+                        <h3>تبديل السيارات (التبادل)</h3>
+                        <p>امكانية تبديل سيارتك القديمة بأخرى جديدة أو مستعملة من أسطولنا، بأسعار تقييم عادلة وشفافة.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://i.postimg.cc/VvJXYP47/file-0000000037b862439b9e8df3c7ebbf2b.png" alt="الوساطة في البيع">
+                    </div>
+                    <div class="service-content">
+                        <h3>الوساطة في البيع</h3>
+                        <p>نساعدك على بيع سيارتك بسهولة وسرعة، عبر شبكتنا الواسعة من العملاء والمهتمين.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://i.postimg.cc/MGtTSYgZ/file-00000000c5b861f5917c0e1ac15d2d03.png" alt="الإجراءات الإدارية">
+                    </div>
+                    <div class="service-content">
+                        <h3>التسجيل والإجراءات الإدارية</h3>
+                        <p>نوفر خدمة مرافقة كاملة في الإجراءات الإدارية (الـ Carte Grise، التوكيل، إلخ) لتسهيل تجربتك الشرائية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>من نحن</h2>
+                    <p><span class="company-name">AUTOVISTA</span> هي شركة تونسية في مجال بيع السيارات، تجمع بين الخبرة، المصداقية، والخدمة الراقية لتقديم تجربة شراء مميزة لعملائنا. تأسست شركتنا بهدف توفير سيارات عالية الجودة تناسب مختلف الاحتياجات والميزانيات، سواء كانت جديدة أو مستعملة، مع ضمان الشفافية والرضا التام.</p>
+                    
+                    <div class="why-us">
+                        <h3>لماذا تختار AUTOVISTA؟</h3>
+                        <ul>
+                            <li>فريق خدام وعندو خبرة كبيرة في السوق</li>
+                            <li>كل المعاملات تتمّ بشفافية تامة</li>
+                            <li>أسعار معقولة وخدمة عالية الجودة</li>
+                            <li>تشوف كرهبتك قبل ماتخلص</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="#contact" class="btn">تواصل معنا</a>
+                </div>
+                <div class="about-img">
+                    <img src="https://i.postimg.cc/mgfgDW8P/Mobile.jpg" alt="عن الشركة">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>اتصل بنا</h2>
+                <p>نحن هنا للإجابة على جميع استفساراتك وتقديم أفضل الخدمات لك</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>معلومات التواصل</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> العنوان: 3005, sfax , Tunisia</p>
+                    <p><i class="fas fa-phone"></i> الهاتف: 58.655.877</p>
+                    
+                    <div class="social-links">
+                        <h4>تابعنا على وسائل التواصل الاجتماعي</h4>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/profile.php?id=100054243740803" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://vm.tiktok.com/ZMHbuQKRLLtqh-DliCB/" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" id="name" placeholder="اسمك الكريم" required>
+                        <input type="tel" id="phone" placeholder="رقم هاتفك" minlength="8" required>
+                        <textarea id="message" placeholder="رسالتك" required></textarea>
+                        <button type="submit" class="btn">إرسال الرسالة</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">AUTO<span>VISTA</span></div>
+                <div class="footer-links">
+                    <a href="#">الرئيسية</a>
+                    <a href="#services">خدماتنا</a>
+                    <a href="#about">من نحن</a>
+                    <a href="#contact">اتصل بنا</a>
+                </div>
+                <div class="social-media">
+                    <a href="https://www.facebook.com/profile.php?id=100054243740803" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://vm.tiktok.com/ZMHbuQKRLLtqh-DliCB/" target="_blank"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <div class="copyright">
+                    &copy; 2023 AUTOVISTA. جميع الحقوق محفوظة.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="floating-buttons">
+        <a href="https://wa.me/21658655887" class="whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.facebook.com/share/19dw1RahTe/?mibextid=wwXIfr" class="messenger-btn" target="_blank">
+            <i class="fab fa-facebook-messenger"></i>
+        </a>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            // التحقق من أن رقم الهاتف يحتوي على 8 أرقام على الأقل
+            if (phone.length < 8 || !/^\d+$/.test(phone)) {
+                alert('الرجاء إدخال رقم هاتف صحيح (8 أرقام على الأقل)');
+                return;
+            }
+            
+            // توجيه المستخدم إلى واتساب مع البيانات
+            const whatsappUrl = `https://wa.me/21658655887?text=
+                الاسم: ${encodeURIComponent(name)}%0A
+                رقم الهاتف: ${encodeURIComponent(phone)}%0A
+                الرسالة: ${encodeURIComponent(message)}`;
+            
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
